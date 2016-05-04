@@ -1,0 +1,42 @@
+<!--Register User Screen
+Route: #/
+Registers a new user. Shows notification for success or error message.
+After registration, the user is automatically logged in and is redirected to the dashboard.
+-->
+
+<form name="registerUserForm">
+    <div class="box form-horizontal">
+        <h2>Register</h2>
+
+        <div class="form-group">
+            <label for="email" class="col-md-2 control-label">Email:</label>
+
+            <div class="col-md-5">
+                <input type="text" class="form-control" id="email" ng-model="userData.email" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="col-md-2 control-label">Password:</label>
+
+            <div class="col-md-5">
+                <input type="password" class="form-control" id="password" ng-model="userData.password" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="confirm-password" class="col-md-2 control-label">Confirm Password:</label>
+
+            <div class="col-md-5">
+                <input type="password" class="form-control" id="confirm-password" ng-model="userData.confirmPassword" required />
+            </div>
+        </div>
+
+        <div class="col-md-offset-2">
+            <button class="btn btn-default" id="registerButton" ng-click="register(userData)">Register</button>
+
+            <!--<a ng-click="register(userData)" class="button">Register</a>-->
+            <a href="#/login" class="link">Login</a>
+        </div>
+    </div>
+</form>
