@@ -25,11 +25,11 @@
                 </li>
             </ul>
             
-            <ul class="nav navbar-nav navbar-right" ng-if="authService.isLoggedIn()">
-                <li><a href="#/profile/password"> Hello, {{authentication.getCurrentUser().userName}}!</a></li>
+            <ul class="nav navbar-nav navbar-right" ng-if="authentication.isLoggedIn()">
+                <li><a href="#/profile/password"> Hello, {{currentUser.Username}}!</a></li>
                 <li><a href="#/logout">Logout</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" ng-if="authService.isAnonymous()">
+            <ul class="nav navbar-nav navbar-right" ng-if="authentication.isAnonymous()">
                 <li><a href="#/login">Login</a></li>
             </ul>
         </div>

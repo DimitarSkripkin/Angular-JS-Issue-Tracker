@@ -8,6 +8,7 @@ angular.module('issueTracker', [
         'issueTracker.common.notifier',
         'issueTracker.common.error',
         
+        'issueTracker.account.identity',
         'issueTracker.account.authentication',
         'issueTracker.account.changePassword',
         'issueTracker.account.login',

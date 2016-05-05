@@ -5,14 +5,20 @@ angular.module('issueTracker.account.authentication', [])
         '$http',
         '$cookies',
         '$q',
+        'identity',
         'baseServiceUrl',
-        function ($http, $cookies, $q, baseServiceUrl) {
+        function ($http, $cookies, $q, identity, baseServiceUrl) {
             var AUTHENTICATION_COOKIE_KEY = 'AuthToken';
 
 			function preserveUserData(data) {
 				var accessToken = data.access_token;
 				$http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
 				$cookies.put(AUTHENTICATION_COOKIE_KEY, accessToken);
+                
+                identity.requestUserProfile()
+                    .then(function() {
+                        deferred.resolve(response.data);
+                    });
 			}
 
 			function removeUserData() {
@@ -76,17 +82,7 @@ angular.module('issueTracker.account.authentication', [])
             
             function logout() {
                 removeUserData();
-            }
-            
-            function getCurrentUser() {
-                debugger;
-                return {
-                    userName: 'bla@a.a'
-                };
-                // var userObject = sessionStorage['currentUser'];
-                // if (userObject) {
-                //     return JSON.parse(sessionStorage['currentUser']);
-                // }
+                identity.removeUserProfile();
             }
             
             function isAnonymous() {
@@ -96,21 +92,11 @@ angular.module('issueTracker.account.authentication', [])
             function isLoggedIn() {
                 return !!$cookies.get(AUTHENTICATION_COOKIE_KEY);
             }
-            
-            function isNormalUser() {
-                var currentUser = this.getCurrentUser();
-                return (currentUser != undefined) && (!currentUser.isAdmin);
-            }
-            
-            function isAdmin() {
-                var currentUser = this.getCurrentUser();
-                return (currentUser != undefined) && (currentUser.isAdmin);
-            }
 
 			function refreshCookie() {
 				if (isLoggedIn()) {
 					$http.defaults.headers.common.Authorization = 'Bearer ' + $cookies.get(AUTHENTICATION_COOKIE_KEY);
-					//identity.requestCurrentUserProfile();
+					identity.requestCurrentUserProfile();
 				}
 			}
             
@@ -119,11 +105,8 @@ angular.module('issueTracker.account.authentication', [])
                 login: login,
                 register: register,
                 logout: logout,
-                getCurrentUser: getCurrentUser,
                 isAnonymous: isAnonymous,
                 isLoggedIn: isLoggedIn,
-                isNormalUser: isNormalUser,
-                isAdmin: isAdmin,
                 refreshCookie: refreshCookie
             }
         }]);

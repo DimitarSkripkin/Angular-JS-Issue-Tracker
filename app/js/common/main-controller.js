@@ -1,12 +1,14 @@
-angular.module('issueTracker.common', [
-        'issueTracker.common.notifier'
-    ])
+angular.module('issueTracker.common', [])
     .controller('MainCtrl', [
         '$scope',
-        '$location',
         'authentication',
-        'notifier',
-        function ($scope, $location, authentication, notifier) {
-            // Put the authentication in the $scope to make it accessible from all screens
+        'identity',
+        function ($scope, authentication, identity) {
+            // Put authentication in the $scope to make it accessible from all screens
             $scope.authentication = authentication;
+            
+            identity.getCurrentUser()
+                .then(function(user) {
+                    $scope.currentUser = user;
+                });
         }]);
