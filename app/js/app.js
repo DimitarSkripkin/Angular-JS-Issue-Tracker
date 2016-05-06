@@ -15,7 +15,9 @@ angular.module('issueTracker', [
         'issueTracker.account.logout',
         'issueTracker.account.register',
         
-        'issueTracker.home'
+        'issueTracker.home',
+        'issueTracker.admin.dashboard',
+        'issueTracker.user.dashboard'
     ])
     .config([
         '$routeProvider',

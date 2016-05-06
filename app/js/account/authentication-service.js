@@ -14,11 +14,7 @@ angular.module('issueTracker.account.authentication', [])
 				var accessToken = data.access_token;
 				$http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
 				$cookies.put(AUTHENTICATION_COOKIE_KEY, accessToken);
-                
-                identity.requestUserProfile()
-                    .then(function() {
-                        deferred.resolve(response.data);
-                    });
+                identity.requestCurrentUserProfile();
 			}
 
 			function removeUserData() {

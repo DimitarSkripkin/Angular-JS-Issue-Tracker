@@ -12,8 +12,15 @@ angular.module('issueTracker.home', [])
         }])
     .controller('HomeController', [
         '$scope',
-        '$rootScope',
-        'notifier',
-        function ($scope, $rootScope, notifier) {
-            // TODO
+        '$location',
+        'authentication',
+        'identity',
+        function ($scope, $location, authentication, identity) {
+            if (authentication.isLoggedIn()) {
+                if (identity.isAdmin()){
+                    $location.path('/admin-dashboard');
+                } else if (identity.isNormalUser()) {
+                    $location.path('/user-dashboard');
+                }
+            }
         }]);

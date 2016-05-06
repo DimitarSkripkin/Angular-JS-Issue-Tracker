@@ -34,21 +34,11 @@ angular.module('issueTracker.account.identity', [])
 			}
             
             function isNormalUser() {
-                this.getCurrentUser()
-					.then(function () {
-						return !currentUser.isAdmin;
-					});
-				
-                return false;
+                return (currentUser != undefined && !currentUser.isAdmin);
             }
             
             function isAdmin() {
-                this.getCurrentUser()
-					.then(function () {
-						return currentUser.isAdmin;
-					});
-				
-                return false;
+                return (currentUser != undefined && currentUser.isAdmin);
             }
 
 			function removeUserProfile() {
@@ -58,6 +48,8 @@ angular.module('issueTracker.account.identity', [])
 			return {
 				getCurrentUser: getCurentUser,
 				requestCurrentUserProfile: requestCurrentUserProfile,
+				isNormalUser: isNormalUser,
+				isAdmin: isAdmin,
 				removeUserProfile: removeUserProfile
 			}
 		}]);
