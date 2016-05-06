@@ -7,4 +7,9 @@ angular.module('issueTracker.common', [])
             // Put authentication in the $scope to make it accessible from all screens
             $scope.authentication = authentication;
             $scope.identity = identity;
+            
+            identity.getCurrentUser()
+                .then(function(user) {
+                    $scope.currentUser = user;
+                });
         }]);

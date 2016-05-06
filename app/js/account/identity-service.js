@@ -10,7 +10,7 @@ angular.module('issueTracker.account.identity', [])
 
 			var currentUser = undefined;
 
-			function getCurentUser() {
+			function getCurrentUser() {
 				if (currentUser) {
 					return $q.when(currentUser);
 				} else {
@@ -46,7 +46,7 @@ angular.module('issueTracker.account.identity', [])
 			}
 
 			return {
-				getCurrentUser: getCurentUser,
+				getCurrentUser: getCurrentUser,
 				requestCurrentUserProfile: requestCurrentUserProfile,
 				isNormalUser: isNormalUser,
 				isAdmin: isAdmin,
