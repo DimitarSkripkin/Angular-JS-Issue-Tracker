@@ -18,11 +18,13 @@ angular.module('issueTracker', [
         'issueTracker.home',
         'issueTracker.home.dashboard',
         
+        'issueTracker.projects',
         'issueTracker.projects.allProjects',
         'issueTracker.projects.viewProject',
         'issueTracker.projects.addProject',
         'issueTracker.projects.editProject',
         
+        'issueTracker.issues',
         'issueTracker.issues.addIssue',
         'issueTracker.issues.viewIssue',
         'issueTracker.issues.editIssue'
