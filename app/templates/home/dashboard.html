@@ -1,0 +1,16 @@
+<div ng-if="identity.isAdmin()">
+    <!--User Dashboard
+    Route: #/
+    Same as the normal user’s dashboard. Includes two buttons for adding a new project and listing all projects.
+    -->
+
+    <h2>Admin dashboard</h2>
+</div>
+<div ng-if="identity.isNormalUser()">
+    <!--User Dashboard
+    Route: #/
+    Includes the user’s assigned issues, ordered by due date in descending order and a panel with all the projects that you are associated with (you have an assigned issue in them or you are a project leader)
+    -->
+
+    <h2>User dashboard</h2>
+</div>

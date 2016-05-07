@@ -16,8 +16,16 @@ angular.module('issueTracker', [
         'issueTracker.account.register',
         
         'issueTracker.home',
-        'issueTracker.admin.dashboard',
-        'issueTracker.user.dashboard'
+        'issueTracker.home.dashboard',
+        
+        'issueTracker.projects.allProjects',
+        'issueTracker.projects.viewProject',
+        'issueTracker.projects.addProject',
+        'issueTracker.projects.editProject',
+        
+        'issueTracker.issues.addIssue',
+        'issueTracker.issues.viewIssue',
+        'issueTracker.issues.editIssue'
     ])
     .config([
         '$routeProvider',
@@ -39,4 +47,5 @@ angular.module('issueTracker', [
             
             authentication.refreshCookie();
         }])
-    .constant('baseServiceUrl', 'http://softuni-issue-tracker.azurewebsites.net');
+    .constant('baseServiceUrl', 'http://softuni-issue-tracker.azurewebsites.net')
+    .constant('pageSize', 5);

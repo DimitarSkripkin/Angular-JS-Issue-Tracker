@@ -1,0 +1,17 @@
+
+<div ng-if="identity.isAdmin()">
+    <!--Edit Project Page
+    Route: #/projects/:id/edit
+    All of the functionality as the project’s leader including the ability to change the leader.
+    -->
+
+    <h2>Admin project</h2>
+</div>
+<div ng-if="identity.isNormalUser()">
+    <!--Edit Project Page
+    Route: #/projects/:id/edit
+    If the user is the project leader, he can access this page and edit the project.
+    -->
+
+    <h2>User project</h2>
+</div>

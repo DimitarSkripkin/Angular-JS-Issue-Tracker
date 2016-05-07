@@ -1,24 +1,23 @@
 'use strict';
 
-// The ProjectsController is responsible for the "User Projects" screen
-angular.module('issueTracker.projects', [
-    ])
+// show choosen project
+angular.module('issueTracker.projects.viewProject', [])
     .config([
         '$routeProvider',
         function($routeProvider) {
              $routeProvider.when('/projects/:id', {
-                templateUrl: 'templates/...',
-                controller: 'ProjectsController'
+                templateUrl: 'templates/projects/project.html',
+                controller: 'ProjectController'
             });
         }])
-    .controller('ProjectsController', [
+    .controller('ProjectController', [
         '$scope',
         '$rootScope',
         '$location',
         '$routeParams',
         'authentication',
         'notifier',
-        function ($scope, $rootScope, $location, $routeParams, authentication, notifier) {           
+        function ($scope, $rootScope, $location, $routeParams, authentication, notifier) {
             var projectId = $routeParams.id;
         }
     ]);

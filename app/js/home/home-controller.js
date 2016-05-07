@@ -17,10 +17,6 @@ angular.module('issueTracker.home', [])
         'identity',
         function ($scope, $location, authentication, identity) {
             if (authentication.isLoggedIn()) {
-                if (identity.isAdmin()){
-                    $location.path('/admin-dashboard');
-                } else if (identity.isNormalUser()) {
-                    $location.path('/user-dashboard');
-                }
+                $location.path('/dashboard');
             }
         }]);
