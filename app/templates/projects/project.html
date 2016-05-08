@@ -18,9 +18,9 @@ Includes all the project info and all of its issues. If the user is the projectâ
 		<p><span>Project Key: </span> {{project.ProjectKey}}</p>
 	</div>
 
-	<div ng-if="isLead">
-		<button class="btn btn-primary" ng-click="goToEditProjectPage()">Edit Project</button>
-		<button class="btn btn-primary" ng-click="showAddIssueModal()">Add New Issue</button>
+	<div ng-if="isProjectLeader">
+		<a class="btn btn-primary" href="#/projects/{{project.Id}}/edit">Edit Project</a>
+		<a class="btn btn-primary" href="#/projects/{{project.Id}}/add-issue">Add New Issue</a>
 	</div>
 </div>
 

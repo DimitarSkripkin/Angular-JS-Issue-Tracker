@@ -22,11 +22,12 @@ angular.module('issueTracker.projects.viewProject', [])
             projects.getProjectById(projectId)
                 .then(function(response) {
                     $scope.project = response.data;
+                    $scope.isProjectLeader = ($scope.currentUser.Id == response.data.Lead.Id);
                     
                     issues.getIssueByProjectId(projectId)
                         .then(function (issueResponse) {
                             $scope.projectIssues = issueResponse.data;
-                        })
+                        });
                 });
         }
     ]);

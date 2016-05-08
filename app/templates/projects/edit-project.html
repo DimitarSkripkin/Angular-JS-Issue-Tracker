@@ -15,3 +15,45 @@
 
     <h2>User project</h2>
 </div>
+
+<h2>Project <strong>{{project.Name}}</strong></h2>
+<div class="col-md-5">
+	<h3>Project Details:</h3>
+	<div>
+		<p>
+            <span>Name: </span>
+            <input type="text" class="form-control" ng-model="project.Name" />
+        </p>
+		<p>
+            <span>Description: </span><input type="text" class="form-control" ng-model="project.Description" />
+        </p>
+		<p>
+            <span>Project Key: </span>
+            <input type="text" class="form-control" ng-model="project.ProjectKey" />
+        </p>
+		<p>
+            <span>Lead By: </span>
+            <div ng-if="identity.isAdmin()">
+                <select class="form-control" ng-model="project.LeadId">
+                    <option ng-repeat="user in users" value="{{user.Id}}">{{user.Username}}</option>
+                </select>
+            </div>
+            
+            <div ng-if="identity.isNormalUser()">
+                <select class="form-control" value="project.LeadId" readonly>
+                    <option value="{{project.Lead.Id}}">{{project.Lead.Username}}</option>
+                </select>
+            </div>
+        </p>
+		<p>
+            <span>Labels: </span>
+            <input type="text" class="form-control" ng-model="project.Labels" />
+		</p>
+		<p>
+            <span>Priorities: </span>
+            <input type="text" class="form-control" ng-model="project.Priorities" />
+		</p>
+	</div>
+
+    <button class="btn btn-primary" ng-click="editProject(project)">Edit Project</button>
+</div>

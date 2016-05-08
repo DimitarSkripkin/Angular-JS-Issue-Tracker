@@ -8,6 +8,10 @@
     color: orange;
 }
 
+.post-body > p {
+    margin: 10px;
+}
+
 .post-date {
     float: right;
     margin: 5px;
