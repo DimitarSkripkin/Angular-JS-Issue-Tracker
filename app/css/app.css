@@ -1,0 +1,19 @@
+.comments {
+    float: right;
+}
+
+.post-by {
+    float: left;
+    margin: 5px;
+    color: orange;
+}
+
+.post-date {
+    float: right;
+    margin: 5px;
+}
+
+.new-post > textarea {
+    min-height: 100px;
+    min-width: 200px;
+}

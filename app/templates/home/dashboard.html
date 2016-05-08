@@ -6,7 +6,7 @@
     Same as the normal user’s dashboard. Includes two buttons for adding a new project and listing all projects.
     -->
 
-    <a class="btn btn-default" href="#/projects/add">Add Poject</a>
+    <a class="btn btn-default" href="#/projects-add">Add Poject</a>
     <a class="btn btn-default" href="#/projects">View All Projects</a>
 </div>
 <!--User Dashboard
@@ -14,21 +14,21 @@ Route: #/
 Includes the user’s assigned issues, ordered by due date in descending order and a panel with all the projects that you are associated with (you have an assigned issue in them or you are a project leader)
 -->
 
-<table class="table">
+<table class="table table-striped border-except-top">
     <thead>
         <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Project</th>
-            <th>Due Date</th>
+            <th class="block">Title</th>
+            <th class="block">Description</th>
+            <th class="block">Project</th>
+            <th class="block">Due Date</th>
         </tr>
     </thead>
-    <tbody ng-repeat="issue in issues">
-        <tr>
-            <td><a href="#/issues/{{issue.Id}}">{{issue.Title}}</a></td>
-            <td>{{issue.Description}}</td>
-            <td><a href="#/projects/{{issue.Project.Id}}">{{issue.Project.Name}}</a></td>
-            <td>{{issue.DueDate}}</td>
+    <tbody>
+        <tr ng-repeat="issue in issues">
+            <td class="block"><a href="#/issues/{{issue.Id}}">{{issue.Title}}</a></td>
+            <td class="block">{{issue.Description}}</td>
+            <td class="block"><a href="#/projects/{{issue.Project.Id}}">{{issue.Project.Name}}</a></td>
+            <td class="block">{{issue.DueDate | date:'dd.MM.yyyy'}}</td>
         </tr>
     </tbody>
 </table>

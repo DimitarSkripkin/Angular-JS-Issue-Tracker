@@ -13,19 +13,34 @@ angular.module('issueTracker.issues.viewIssue', [
         }])
     .controller('ViewIssueController', [
         '$scope',
-        '$rootScope',
-        '$location',
         '$routeParams',
         'authentication',
         'notifier',
         'issues',
-        function ($scope, $rootScope, $location, $routeParams, authentication, notifier, issues) {
+        function ($scope, $routeParams, authentication, notifier, issues) {
             var issueId = $routeParams.id;
+            
+            //$scope.newPostText = "";
+            $scope.addNewPost = function (newPostText) {
+                var comment = {
+                    Text: newPostText
+                };
+                
+                issues.addCommentsByIssueId(issueId, comment)
+                    .then(function (responseComments) {
+                        $scope.issueComments = responseComments.data;
+                        $scope.newPostText = "";
+                    });
+            }
             
             issues.getIssueById(issueId)
                 .then(function(response) {
-                    console.log(response.data);
                     $scope.issue = response.data;
+                    
+                    issues.getCommentsByIssueId(issueId)
+                        .then(function (responseComments) {
+                            $scope.issueComments = responseComments.data;
+                        });
                 });
         }
     ]);

@@ -16,8 +16,12 @@ If the user is the issue’s project leader they can see the edit issue button.
 		<p><span>Due Date:</span> {{issue.DueDate | date:'dd.MM.yyyy'}}</p>
 		<p><span>Status: </span> {{issue.Status.Name}}</p>
 		<p><span>Priority: </span> {{issue.Priority.Name}}</p>
-		<p><span>Labels: </span><span
-				ng-repeat="label in issue.Labels"><span>{{label.Name}}{{$last ? '' : ', '}}</span></span></p>
+		<p>
+            <span>Labels: </span>
+            <span ng-repeat="label in issue.Labels">
+                <span>{{label.Name}}{{$last ? '' : ', '}}</span>
+            </span>
+        </p>
 		<p><span>Project ID:</span> {{issue.Project.Id}}</p>
 		<p><span>Project Name:</span> {{issue.Project.Name}}</p>
 	</div>
@@ -26,4 +30,18 @@ If the user is the issue’s project leader they can see the edit issue button.
 		<button ng-if="isAssignee" class="btn btn-primary" ng-click="showChangeStatusModal()">Change Status</button>
 		<button ng-if="isProjectLead" class="btn btn-primary" ng-click="">Edit Issue</button>
 	</div>
+</div>
+
+<div class="comments">
+    <div class="post-body" ng-repeat="comment in issueComments">
+        <header>
+            <div class="post-by">{{comment.Author.Username}}</div>
+            <div class="post-date">{{comment.CreatedOn | date:'dd.MM.yyyy HH:MM'}}</div>
+        </header>
+        <p class="post-message">{{comment.Text}}</p>
+    </div>
+    <div class="new-post">
+        <textarea id="new-post-input" ng-model="newPostText"></textarea>
+    </div>
+    <button class="btn btn-info" id="add-new-post" ng-click="addNewPost(newPostText)">Post</button>
 </div>

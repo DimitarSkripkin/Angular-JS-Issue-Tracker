@@ -31,11 +31,21 @@ angular.module('issueTracker.issues', [])
                 return $http.post(baseServiceUrl + '/Issues/', issue);
             }
             
+            function getCommentsByIssueId(issueId) {
+                return $http.get(baseServiceUrl + '/Issues/' + issueId + '/comments');
+            }
+            
+            function addCommentsByIssueId(issueId, comment) {
+                return $http.post(baseServiceUrl + '/Issues/' + issueId + '/comments', comment);
+            }
+            
             return {
                 getUserIssues: getUserIssues,
                 getIssueByProjectId: getIssueByProjectId,
                 getIssueById: getIssueById,
                 editIssueById: editIssueById,
-                addIssueById: addIssueById
+                addIssueById: addIssueById,
+                getCommentsByIssueId: getCommentsByIssueId,
+                addCommentsByIssueId: addCommentsByIssueId
             };
         }]);
