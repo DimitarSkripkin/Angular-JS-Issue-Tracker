@@ -12,12 +12,21 @@ angular.module('issueTracker.projects.viewProject', [])
         }])
     .controller('ProjectController', [
         '$scope',
-        '$rootScope',
-        '$location',
         '$routeParams',
-        'authentication',
         'notifier',
-        function ($scope, $rootScope, $location, $routeParams, authentication, notifier) {
+        'projects',
+        'issues',
+        function ($scope, $routeParams, notifier, projects, issues) {
             var projectId = $routeParams.id;
+            
+            projects.getProjectById(projectId)
+                .then(function(response) {
+                    $scope.project = response.data;
+                    
+                    issues.getIssueByProjectId(projectId)
+                        .then(function (issueResponse) {
+                            $scope.projectIssues = issueResponse.data;
+                        })
+                });
         }
     ]);

@@ -8,8 +8,21 @@ angular.module('issueTracker.projects', [])
         'identity',
         'baseServiceUrl',
         function ($http, $cookies, $q, identity, baseServiceUrl) {
-            function getProjects() {}
+            function getProjectById(projectId) {
+                return $http.get(baseServiceUrl + '/Projects/' + projectId);
+            }
+            
+            function addProject(project) {
+                return $http.put(baseServiceUrl + '/Projects/', project);
+            }
+            
+            function editProjectById(projectId, project) {
+                return $http.put(baseServiceUrl + '/Projects/' + projectId, project);
+            }
             
             return {
+                getProjectById: getProjectById,
+                addProject: addProject,
+                editProjectById: editProjectById
             };
         }]);

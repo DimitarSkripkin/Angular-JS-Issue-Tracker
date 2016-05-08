@@ -4,3 +4,26 @@ Displays the information about the issue
 If the user is the assignee, they can see a button for changing the status using an available status (e.g. Open -> Closed).
 If the user is the issue’s project leader they can see the edit issue button.
 -->
+
+<h2>Issue <strong>{{issue.Title}}</strong> (#{{issue.Id}})</h2>
+<div class="col-md-5">
+	<h3>Project Details:</h3>
+	<div>
+		<p><span>Title: </span> {{issue.Title}}</p>
+		<p><span>Id: </span> {{issue.Id}}</p>
+		<p><span>Description: </span> {{issue.Description}}</p>
+		<p><span>Assignee: </span> {{issue.Assignee.Username}}</p>
+		<p><span>Due Date:</span> {{issue.DueDate | date:'dd.MM.yyyy'}}</p>
+		<p><span>Status: </span> {{issue.Status.Name}}</p>
+		<p><span>Priority: </span> {{issue.Priority.Name}}</p>
+		<p><span>Labels: </span><span
+				ng-repeat="label in issue.Labels"><span>{{label.Name}}{{$last ? '' : ', '}}</span></span></p>
+		<p><span>Project ID:</span> {{issue.Project.Id}}</p>
+		<p><span>Project Name:</span> {{issue.Project.Name}}</p>
+	</div>
+
+	<div>
+		<button ng-if="isAssignee" class="btn btn-primary" ng-click="showChangeStatusModal()">Change Status</button>
+		<button ng-if="isProjectLead" class="btn btn-primary" ng-click="">Edit Issue</button>
+	</div>
+</div>

@@ -18,7 +18,14 @@ angular.module('issueTracker.issues.viewIssue', [
         '$routeParams',
         'authentication',
         'notifier',
-        function ($scope, $rootScope, $location, $routeParams, authentication, notifier) {
+        'issues',
+        function ($scope, $rootScope, $location, $routeParams, authentication, notifier, issues) {
             var issueId = $routeParams.id;
+            
+            issues.getIssueById(issueId)
+                .then(function(response) {
+                    console.log(response.data);
+                    $scope.issue = response.data;
+                });
         }
     ]);

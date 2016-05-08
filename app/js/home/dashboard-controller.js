@@ -42,8 +42,8 @@ angular.module('issueTracker.home.dashboard', [])
             $scope.pageSize = pageSize;
             
             issues.getUserIssues()
-                .then(function (responce) {
-                    $scope.issues = responce.data.Issues;
-                    $scope.total = responce.data.TotalCount;
+                .then(function (response) {
+                    $scope.issues = response.data.Issues;
+                    $scope.total = response.data.TotalCount;
                 });
         }]);
