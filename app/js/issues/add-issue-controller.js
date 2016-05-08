@@ -49,7 +49,7 @@ angular.module('issueTracker.issues.addIssue', [
                 
                 issues.addIssue(newIssue)
                     .then(function (response) {
-                        $location.path('/projects/' + newIssue.ProjectId);
+                        $location.path('/projects/' + projectId);
                     })
             }
         }

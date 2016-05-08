@@ -35,3 +35,22 @@ Includes the user’s assigned issues, ordered by due date in descending order a
 
 <div paging page="currentPage" page-size="pageSize" total="total" class="ng-isolate-scope">
 </div>
+
+<hr />
+<h2>Associated projects</h2>
+<table class="table table-striped border-except-top">
+    <thead>
+        <tr>
+            <th class="block">Title</th>
+            <th class="block">Description</th>
+            <th class="block">Lead</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="project in associatedProjects">
+            <td class="block"><a href="#/projects/{{project.Id}}">{{project.Name}}</a></td>
+            <td class="block">{{project.Description}}</td>
+            <td class="block">{{project.Lead.Username}}</td>
+        </tr>
+    </tbody>
+</table>

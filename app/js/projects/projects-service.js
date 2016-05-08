@@ -7,7 +7,8 @@ angular.module('issueTracker.projects', [])
         '$q',
         'identity',
         'baseServiceUrl',
-        function ($http, $cookies, $q, identity, baseServiceUrl) {
+        'pageSize',
+        function ($http, $cookies, $q, identity, baseServiceUrl, pageSize) {
             function getProjectById(projectId) {
                 return $http.get(baseServiceUrl + '/Projects/' + projectId);
             }
@@ -24,10 +25,20 @@ angular.module('issueTracker.projects', [])
                 return $http.get(baseServiceUrl + '/Projects/');
             }
             
+            function getProjectsByFilter(pageNumber, projectFilter) {
+                var url = baseServiceUrl +
+                    '/Projects/?pageSize=' + pageSize +
+                    '&pageNumber=' + pageNumber +
+                    '&filter=' + projectFilter;
+                
+                return $http.get(url);
+            }
+            
             return {
                 getProjectById: getProjectById,
                 addProject: addProject,
                 editProjectById: editProjectById,
-                getAllProjects: getAllProjects
+                getAllProjects: getAllProjects,
+                getProjectsByFilter: getProjectsByFilter
             };
         }]);

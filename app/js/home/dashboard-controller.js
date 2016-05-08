@@ -36,8 +36,9 @@ angular.module('issueTracker.home.dashboard', [])
         'authentication',
         'identity',
         'issues',
+        'projects',
         'pageSize',
-        function ($scope, $location, authentication, identity, issues, pageSize) {
+        function ($scope, $location, authentication, identity, issues, projects, pageSize) {
             $scope.currentPage = 1;
             $scope.pageSize = pageSize;
             
@@ -45,5 +46,16 @@ angular.module('issueTracker.home.dashboard', [])
                 .then(function (response) {
                     $scope.issues = response.data.Issues;
                     $scope.total = response.data.TotalCount;
+                });
+            
+            $scope.associatedProjectPage = 1;
+            var associatedProjectPage = 1;
+            
+            identity.getCurrentUser()
+                .then(function (currentUser) {
+                    projects.getProjectsByFilter(associatedProjectPage, 'Lead.Id="' + currentUser.Id + '"')
+                        .then(function (response) {
+                            $scope.associatedProjects = response.data.Projects;
+                        }); 
                 });
         }]);
