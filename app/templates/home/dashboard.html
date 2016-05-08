@@ -1,16 +1,37 @@
+<h2>Dashboard</h2>
+    
 <div ng-if="identity.isAdmin()">
     <!--User Dashboard
     Route: #/
     Same as the normal user’s dashboard. Includes two buttons for adding a new project and listing all projects.
     -->
 
-    <h2>Admin dashboard</h2>
+    <a class="btn btn-default" href="#/projects/add">Add Poject</a>
+    <a class="btn btn-default" href="#/projects">View All Projects</a>
 </div>
-<div ng-if="identity.isNormalUser()">
-    <!--User Dashboard
-    Route: #/
-    Includes the user’s assigned issues, ordered by due date in descending order and a panel with all the projects that you are associated with (you have an assigned issue in them or you are a project leader)
-    -->
+<!--User Dashboard
+Route: #/
+Includes the user’s assigned issues, ordered by due date in descending order and a panel with all the projects that you are associated with (you have an assigned issue in them or you are a project leader)
+-->
 
-    <h2>User dashboard</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Project</th>
+            <th>Due Date</th>
+        </tr>
+    </thead>
+    <tbody ng-repeat="issue in issues">
+        <tr>
+            <td><a href="#/issues/{{issue.Id}}">{{issue.Title}}</a></td>
+            <td>{{issue.Description}}</td>
+            <td><a href="#/projects/{{issue.Project.Id}}">{{issue.Project.Name}}</a></td>
+            <td>{{issue.DueDate}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div paging page="currentPage" page-size="pageSize" total="total" class="ng-isolate-scope">
 </div>

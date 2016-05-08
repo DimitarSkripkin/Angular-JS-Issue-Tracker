@@ -8,6 +8,8 @@ angular.module('issueTracker.projects', [])
         'identity',
         'baseServiceUrl',
         function ($http, $cookies, $q, identity, baseServiceUrl) {
+            function getProjects() {}
+            
             return {
             };
         }]);

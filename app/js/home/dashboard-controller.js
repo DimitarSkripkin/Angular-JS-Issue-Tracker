@@ -35,5 +35,15 @@ angular.module('issueTracker.home.dashboard', [])
         '$location',
         'authentication',
         'identity',
-        function ($scope, $location, authentication, identity) {
+        'issues',
+        'pageSize',
+        function ($scope, $location, authentication, identity, issues, pageSize) {
+            $scope.currentPage = 1;
+            $scope.pageSize = pageSize;
+            
+            issues.getUserIssues()
+                .then(function (responce) {
+                    $scope.issues = responce.data.Issues;
+                    $scope.total = responce.data.TotalCount;
+                });
         }]);
