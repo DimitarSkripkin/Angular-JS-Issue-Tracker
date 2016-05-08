@@ -26,9 +26,10 @@ If the user is the issue’s project leader they can see the edit issue button.
 		<p><span>Project Name:</span> {{issue.Project.Name}}</p>
 	</div>
 
-	<div>
-		<button ng-if="isAssignee" class="btn btn-primary" ng-click="showChangeStatusModal()">Change Status</button>
-		<button ng-if="isProjectLead" class="btn btn-primary" ng-click="">Edit Issue</button>
+	<div ng-if="canEditIssue">
+		<a class="btn btn-primary" href="/issue/{{issue.Id}}/edit">Edit</a>
+		<!--<button ng-if="isAssignee" class="btn btn-primary" ng-click="showChangeStatusModal()">Change Status</button>
+		<button ng-if="isProjectLead" class="btn btn-primary" ng-click="">Edit Issue</button>-->
 	</div>
 </div>
 

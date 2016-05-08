@@ -18,7 +18,33 @@ angular.module('issueTracker.issues.addIssue', [
         '$routeParams',
         'authentication',
         'notifier',
-        function ($scope, $rootScope, $location, $routeParams, authentication, notifier) {
+        'issues',
+        'projects',
+        function ($scope, $rootScope, $location, $routeParams, authentication, notifier, issues, projects) {
             var projectId = $routeParams.id;
+            
+            authentication.getAllUsers()
+                .then(function (response) {
+                    $scope.users = response.data;
+                });
+            
+            projects.getProjectById(projectId)
+                .then(function (response) {
+                    $scope.currentProject = response.data;
+                });
+            
+            $scope.addNewIssue = function (newIssue) {
+                var labels = newIssue.Labels.split(', ');
+                newIssue.Labels = labels.map(function (label) {
+                    return {
+                        Name: label
+                    };
+                });
+                
+                issues.addIssue(newIssue)
+                    .then(function (response) {
+                        $location.path('/projects/' + newIssue.Project.Id);
+                    })
+            }
         }
     ]);

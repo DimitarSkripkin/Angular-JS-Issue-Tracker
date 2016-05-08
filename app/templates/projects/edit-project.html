@@ -34,9 +34,9 @@
 		<p>
             <span>Lead By: </span>
             <div ng-if="identity.isAdmin()">
-                <select class="form-control" ng-model="project.LeadId">
-                    <option ng-repeat="user in users" value="{{user.Id}}">{{user.Username}}</option>
-                </select>
+                <select class="form-control" ng-options="user.Id as user.Username for user in users" ng-model="project.LeadId">
+                <!--<option ng-repeat="user in users" value="{{user.Id}}">{{user.Username}}</option>-->
+            </select>
             </div>
             
             <div ng-if="identity.isNormalUser()">

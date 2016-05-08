@@ -27,7 +27,7 @@ angular.module('issueTracker.issues', [])
                 return $http.put(baseServiceUrl + '/Issues/' + issueId, issue);
             }
             
-            function addIssueById(issue) {
+            function addIssue(issue) {
                 return $http.post(baseServiceUrl + '/Issues/', issue);
             }
             
@@ -44,7 +44,7 @@ angular.module('issueTracker.issues', [])
                 getIssueByProjectId: getIssueByProjectId,
                 getIssueById: getIssueById,
                 editIssueById: editIssueById,
-                addIssueById: addIssueById,
+                addIssue: addIssue,
                 getCommentsByIssueId: getCommentsByIssueId,
                 addCommentsByIssueId: addCommentsByIssueId
             };

@@ -27,8 +27,8 @@ Create Project (Button)
         </p>
 		<p>
             <span>Lead By: </span>
-            <select class="form-control" ng-model="newProject.LeadId">
-                <option ng-repeat="user in users" value="{{user.Id}}">{{user.Username}}</option>
+            <select class="form-control" ng-options="user.Id as user.Username for user in users" ng-model="newProject.LeadId">
+                <!--<option ng-repeat="user in users" value="{{user.Id}}">{{user.Username}}</option>-->
             </select>
         </p>
 		<p>

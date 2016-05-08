@@ -15,5 +15,8 @@
     "jquery": "2.1.x",
     "noty": "^2.3.8",
     "angular-paging": "ngPaging#^2.2.1"
+  },
+  "resolutions": {
+    "angular": "1.4.10"
   }
 }
