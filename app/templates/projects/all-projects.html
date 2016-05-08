@@ -3,3 +3,20 @@ Route: #/projects
 Lists all projects
 Each project has the ability to be edited and an issue to be added to it.
 -->
+
+<table class="table table-striped border-except-top">
+    <thead>
+        <tr>
+            <th class="block">Title</th>
+            <th class="block">Description</th>
+            <th class="block">Lead</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="project in projects">
+            <td class="block"><a href="#/projects/{{project.Id}}">{{project.Name}}</a></td>
+            <td class="block">{{project.Description}}</td>
+            <td class="block">{{project.Lead.Username}}</td>
+        </tr>
+    </tbody>
+</table>

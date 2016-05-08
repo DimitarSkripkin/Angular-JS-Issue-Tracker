@@ -17,3 +17,11 @@
     min-height: 100px;
     min-width: 200px;
 }
+
+.project-details > p > span {
+    color: cornflowerblue;
+}
+
+.project-priorities > span {
+    color: orangered;
+}

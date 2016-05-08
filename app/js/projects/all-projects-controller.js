@@ -12,11 +12,11 @@ angular.module('issueTracker.projects.allProjects', [])
         }])
     .controller('AllProjectsController', [
         '$scope',
-        '$rootScope',
-        '$location',
-        '$routeParams',
-        'authentication',
-        'notifier',
-        function ($scope, $rootScope, $location, $routeParams, authentication, notifier) {
+        'projects',
+        function ($scope, projects) {
+            projects.getAllProjects()
+                .then(function (response) {
+                   $scope.projects = response.data;
+                });
         }
     ]);

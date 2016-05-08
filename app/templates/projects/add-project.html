@@ -9,3 +9,37 @@ Name (Text-box)
 Description (Textarea)
 Create Project (Button)
 -->
+
+<h2>Project <strong>{{project.Name}}</strong></h2>
+<div class="col-md-5">
+	<h3>Project Details:</h3>
+	<div>
+		<p>
+            <span>Name: </span>
+            <input type="text" class="form-control" ng-model="newProject.Name" />
+        </p>
+		<p>
+            <span>Description: </span><input type="text" class="form-control" ng-model="newProject.Description" />
+        </p>
+		<p>
+            <span>Project Key: </span>
+            <input type="text" class="form-control" ng-model="newProject.ProjectKey" />
+        </p>
+		<p>
+            <span>Lead By: </span>
+            <select class="form-control" ng-model="newProject.LeadId">
+                <option ng-repeat="user in users" value="{{user.Id}}">{{user.Username}}</option>
+            </select>
+        </p>
+		<p>
+            <span>Labels: </span>
+            <input type="text" class="form-control" ng-model="newProject.Labels" />
+		</p>
+		<p>
+            <span>Priorities: </span>
+            <input type="text" class="form-control" ng-model="newProject.Priorities" />
+		</p>
+	</div>
+
+    <button class="btn btn-primary" ng-click="addNewProject(newProject)">Create Project</button>
+</div>

@@ -12,6 +12,15 @@ angular.module('issueTracker.common.notifier', [])
                 });
             }
             
+            function showSuccess(msg) {
+                noty({
+                    text: msg,
+                    type: 'success',
+                    layout: 'topCenter',
+                    timeout: 1000
+                });
+            }
+            
             function showError(msg, serverError) {
                 // Collect errors to display from the server response
                 var errors = [];
@@ -42,6 +51,7 @@ angular.module('issueTracker.common.notifier', [])
             
             return {
                 showInfo: showInfo,
+                showSuccess: showSuccess,
                 showError: showError
             }
         });

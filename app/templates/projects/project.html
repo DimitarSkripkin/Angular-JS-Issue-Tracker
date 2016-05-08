@@ -6,14 +6,14 @@ Includes all the project info and all of its issues. If the user is the projectâ
 <h2>Project <strong>{{project.Name}}</strong> (Id: {{project.Id}})</h2>
 <div class="col-md-5">
 	<h3>Project Details:</h3>
-	<div>
+	<div class="project-details">
 		<p><span>Name: </span> {{project.Name}}</p>
 		<p><span>Id: </span> {{project.Id}}</p>
 		<p><span>Description: </span> {{project.Description}}</p>
 		<p><span>Labels: </span> <span ng-repeat="label in project.Labels"><span>{{label.Name}}{{$last ? '' : ', '}}</span></span>
 		</p>
 		<p><span>Lead By: </span> {{project.Lead.Username}}</p>
-		<p><span>Priorities: </span> <span ng-repeat="priority in project.Priorities"><span>{{priority.Name}}{{$last ? '' : ', '}}</span></span>
+		<p><span>Priorities: </span> <span class="project-priorities" ng-repeat="priority in project.Priorities"><span>{{priority.Name}}{{$last ? '' : ', '}}</span></span>
 		</p>
 		<p><span>Project Key: </span> {{project.ProjectKey}}</p>
 	</div>
@@ -23,6 +23,7 @@ Includes all the project info and all of its issues. If the user is the projectâ
 		<button class="btn btn-primary" ng-click="showAddIssueModal()">Add New Issue</button>
 	</div>
 </div>
+
 <div class="col-md-7 border"> <!--Issues-->
 	<h3>Project Issues:</h3>
 	<table class="table table-striped border-except-top">

@@ -23,19 +23,7 @@ angular.module('issueTracker.account.authentication', [])
 			}
             
             function changePassword(userData) {
-                //debugger;
                 return $http.post(baseServiceUrl + '/api/Account/ChangePassword', userData);
-                
-                // var deferred = $q.defer();
-                
-                // $http.post(baseServiceUrl + 'api/Account/ChangePassword', userData)
-                //     .then(function (succsess) {
-                //         deferred.resolve(succsess);
-                //     }, function (err) {
-                //         deferred.reject(err);
-                //     });
-                
-                // return deferred.promise;
             }
             
             function login(userData) {
@@ -96,6 +84,10 @@ angular.module('issueTracker.account.authentication', [])
 				}
 			}
             
+            function getAllUsers() {
+                return $http.get(baseServiceUrl + '/Users/');
+            }
+            
             return {
                 changePassword: changePassword,
                 login: login,
@@ -103,6 +95,7 @@ angular.module('issueTracker.account.authentication', [])
                 logout: logout,
                 isAnonymous: isAnonymous,
                 isLoggedIn: isLoggedIn,
-                refreshCookie: refreshCookie
+                refreshCookie: refreshCookie,
+                getAllUsers: getAllUsers
             }
         }]);

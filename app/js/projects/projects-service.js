@@ -13,16 +13,21 @@ angular.module('issueTracker.projects', [])
             }
             
             function addProject(project) {
-                return $http.put(baseServiceUrl + '/Projects/', project);
+                return $http.post(baseServiceUrl + '/Projects/', project);
             }
             
             function editProjectById(projectId, project) {
                 return $http.put(baseServiceUrl + '/Projects/' + projectId, project);
             }
             
+            function getAllProjects() {
+                return $http.get(baseServiceUrl + '/Projects/');
+            }
+            
             return {
                 getProjectById: getProjectById,
                 addProject: addProject,
-                editProjectById: editProjectById
+                editProjectById: editProjectById,
+                getAllProjects: getAllProjects
             };
         }]);
