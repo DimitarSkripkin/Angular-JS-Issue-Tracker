@@ -17,7 +17,8 @@ angular.module('issueTracker.issues.viewIssue', [
         'authentication',
         'notifier',
         'issues',
-        function ($scope, $routeParams, authentication, notifier, issues) {
+        'projects',
+        function ($scope, $routeParams, authentication, notifier, issues, projects) {
             var issueId = $routeParams.id;
             
             //$scope.newPostText = "";
@@ -35,8 +36,18 @@ angular.module('issueTracker.issues.viewIssue', [
             
             issues.getIssueById(issueId)
                 .then(function(response) {
-                    $scope.issue = response.data;
+                    var issue = response.data;
+                    $scope.issue = issue;
                     
+                    var isAssignee = ($scope.currentUser.Id == issue.Assignee.Id);
+                    $scope.canEditIssue = isAssignee;
+                    
+                    projects.getProjectById(issue.Project.Id)
+                        .then(function (responseProject) {
+                            var isLeader = ($scope.currentUser.Id == responseProject.data.Lead.Id);
+                            $scope.canEditIssue = (isAssignee || isLeader);
+                        });
+            
                     issues.getCommentsByIssueId(issueId)
                         .then(function (responseComments) {
                             $scope.issueComments = responseComments.data;

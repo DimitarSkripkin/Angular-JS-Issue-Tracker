@@ -24,7 +24,7 @@ Create Issue (Button)
     </label>
     <br />
     <label for="issue-project">Project Id:
-        <input id="issue-project" disabled="disabled" required="required" ng-model="currentProject.Id" class="form-control"/>
+        <input id="issue-project" disabled="disabled" required="required" ng-model="newIssue.ProjectId" class="form-control"/>
     </label>
     <br />
     <label for="issue-duedate">Due Date:
@@ -39,5 +39,5 @@ Create Issue (Button)
     <label for="issue-labels">Labels (separated by space): </label>
     <input type="text" id="issue-labels" required="required" ng-model="newIssue.Labels" class="form-control"/>
     <br />
-    <button class="btn btn-primary" ng-disabled="issueEditForm.$invalid" ng-click="addNewIssue(newIssue)">Edit Issue</button>
+    <button class="btn btn-primary" ng-disabled="issueEditForm.$invalid" ng-click="addNewIssue(newIssue)">Add Issue</button>
 </form>

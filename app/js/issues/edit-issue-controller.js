@@ -31,12 +31,18 @@ angular.module('issueTracker.issues.editIssue', [
                 .then(function (issue) {
                     $scope.issue = issue;
                     
+                    var isAssignee = ($scope.currentUser.Id == issue.Assignee.Id);
+                    $scope.isAssignee = isAssignee;
+                    
                     projects.getProjectById(projectId)
                         .then(function (response) {
                             $scope.currentProject = response.data;
+                            
+                            var isLeader = ($scope.currentUser.Id == response.data.Lead.Id);
+                            $scope.isLeader = isLeader;
                         });
                 });
-                
+               
             $scope.editIssue = function (changedIssue) {
                 var labels = newIssue.Labels.split(', ');
                 newIssue.Labels = labels.map(function (label) {

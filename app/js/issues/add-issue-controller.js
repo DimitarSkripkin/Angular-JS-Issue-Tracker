@@ -33,6 +33,10 @@ angular.module('issueTracker.issues.addIssue', [
                     $scope.currentProject = response.data;
                 });
             
+            $scope.newIssue = {
+                ProjectId: projectId
+            };
+            
             $scope.addNewIssue = function (newIssue) {
                 var labels = newIssue.Labels.split(', ');
                 newIssue.Labels = labels.map(function (label) {
@@ -41,9 +45,11 @@ angular.module('issueTracker.issues.addIssue', [
                     };
                 });
                 
+                newIssue.ProjectId = projectId;
+                
                 issues.addIssue(newIssue)
                     .then(function (response) {
-                        $location.path('/projects/' + newIssue.Project.Id);
+                        $location.path('/projects/' + newIssue.ProjectId);
                     })
             }
         }
