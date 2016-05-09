@@ -39,14 +39,25 @@ angular.module('issueTracker.home.dashboard', [])
         'projects',
         'pageSize',
         function ($scope, $location, authentication, identity, issues, projects, pageSize) {
-            $scope.currentPage = 1;
+            $scope.currentIssuePage = 1;
             $scope.pageSize = pageSize;
             
             issues.getUserIssues()
                 .then(function (response) {
                     $scope.issues = response.data.Issues;
-                    $scope.total = response.data.TotalCount;
+                    $scope.totalIssues = response.data.TotalCount;
                 });
+                
+            // A function to do some act on paging click
+            $scope.changeIssuePage = function(page, pageSize, total) {
+                $scope.currentIssuePage = page;
+                
+                issues.getUserIssues(page)
+                    .then(function (response) {
+                        $scope.issues = response.data.Issues;
+                        $scope.totalIssues = response.data.TotalCount;
+                    });
+            };
             
             $scope.associatedProjectPage = 1;
             var associatedProjectPage = 1;
@@ -56,6 +67,21 @@ angular.module('issueTracker.home.dashboard', [])
                     projects.getProjectsByFilter(associatedProjectPage, 'Lead.Id="' + currentUser.Id + '"')
                         .then(function (response) {
                             $scope.associatedProjects = response.data.Projects;
+                            $scope.totalAssociatedProjects = response.data.TotalCount;
                         }); 
                 });
+                
+            // A function to do some act on paging click
+            $scope.changeAssociatedProjectsPage = function(page, pageSize, total) {
+                $scope.associatedProjectPage = page;
+                
+                identity.getCurrentUser()
+                    .then(function (currentUser) {
+                        projects.getProjectsByFilter(page, 'Lead.Id="' + currentUser.Id + '"')
+                            .then(function (response) {
+                                $scope.associatedProjects = response.data.Projects;
+                                $scope.totalAssociatedProjects = response.data.TotalCount;
+                            }); 
+                    });
+            };
         }]);

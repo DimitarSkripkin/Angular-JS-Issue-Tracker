@@ -33,7 +33,11 @@ Includes the user’s assigned issues, ordered by due date in descending order a
     </tbody>
 </table>
 
-<div paging page="currentPage" page-size="pageSize" total="total" class="ng-isolate-scope">
+<div paging page="currentIssuePage"
+    page-size="pageSize"
+    total="totalIssues"
+    class="ng-isolate-scope"
+    paging-action="changeIssuePage(page, pageSize, total)">
 </div>
 
 <hr />
@@ -54,3 +58,10 @@ Includes the user’s assigned issues, ordered by due date in descending order a
         </tr>
     </tbody>
 </table>
+
+<div paging page="associatedProjectPage"
+    page-size="pageSize"
+    total="totalAssociatedProjects"
+    class="ng-isolate-scope"
+    paging-action="changeAssociatedProjectsPage(page, pageSize, total)">
+</div>

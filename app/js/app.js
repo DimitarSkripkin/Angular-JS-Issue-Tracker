@@ -4,6 +4,8 @@ angular.module('issueTracker', [
         'ngRoute',
         'ngCookies',
         
+        'bw.paging',
+        
         'issueTracker.common',
         'issueTracker.common.notifier',
         'issueTracker.common.error',

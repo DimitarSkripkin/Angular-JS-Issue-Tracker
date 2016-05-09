@@ -10,7 +10,7 @@ Includes all the project info and all of its issues. If the user is the projectâ
 		<p><span>Name: </span> {{project.Name}}</p>
 		<p><span>Id: </span> {{project.Id}}</p>
 		<p><span>Description: </span> {{project.Description}}</p>
-		<p><span>Labels: </span> <span ng-repeat="label in project.Labels"><span>{{label.Name}}{{$last ? '' : ', '}}</span></span>
+		<p><span>Labels: </span> <span class="project-labels" ng-repeat="label in project.Labels"><span>{{label.Name}}{{$last ? '' : ', '}}</span></span>
 		</p>
 		<p><span>Lead By: </span> {{project.Lead.Username}}</p>
 		<p><span>Priorities: </span> <span class="project-priorities" ng-repeat="priority in project.Priorities"><span>{{priority.Name}}{{$last ? '' : ', '}}</span></span>
